@@ -699,4 +699,14 @@ Inspired by [Sentinel Key System](https://github.com/AsuraXowner/Sentinel-Open-S
 
 ## License
 
-Licensed for use after purchase from [orqan.shop](https://orqan.shop/product/ArqelUi/). Redistribution without permission is prohibited.
+ArqelUi is free to use via the GitHub loadstring in any project.
+
+**Usage Terms:**
+- Free for personal and commercial use
+- Modifications require source code purchase
+- Redistribution of code is prohibited
+
+**Source Code Purchase:**
+To modify or customize ArqelUi, purchase the source from [orqan.shop](https://orqan.shop/product/ArqelUi/).
+
+Licensed under MIT after purchase.

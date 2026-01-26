@@ -96,9 +96,9 @@ Arqel.Links.Discord = "https://discord.gg/server"
 
 -- Launch with Junkie configuration
 Arqel:LaunchJunkie({
-    Service = "YOUR_SERVICE_NAME",    -- Your Junkie service name
-    Identifier = "YOUR_IDENTIFIER",    -- Your unique identifier
-    Provider = "YOUR_PROVIDER_NAME"    -- Provider name
+    Service = "YOUR_SERVICE_NAME",
+    Identifier = "YOUR_IDENTIFIER",
+    Provider = "YOUR_PROVIDER_NAME"
 })
 
 -- Keys are automatically validated through Junkie
@@ -139,10 +139,10 @@ Customizes the visual appearance of the key system UI.
 
 ```lua
 Arqel.Appearance = {
-    Title = "Arqel",                              -- Main title displayed in header
-    Subtitle = "Enter your key to continue",      -- Subtitle shown in status box
-    Icon = "rbxassetid://95721401302279",        -- Icon displayed in header
-    IconSize = UDim2.new(0, 30, 0, 30)           -- Size of the header icon
+    Title = "Arqel",
+    Subtitle = "Enter your key to continue",
+    Icon = "rbxassetid://95721401302279",
+    IconSize = UDim2.new(0, 30, 0, 30)
 }
 ```
 
@@ -158,8 +158,8 @@ Defines external links for key acquisition and community support.
 
 ```lua
 Arqel.Links = {
-    GetKey = "",    -- URL copied when user clicks "Acquire License"
-    Discord = ""    -- Discord invite copied when user clicks Discord button
+    GetKey = "",
+    Discord = ""
 }
 ```
 
@@ -173,9 +173,9 @@ Controls persistent key storage on the user's system.
 
 ```lua
 Arqel.Storage = {
-    FileName = "Arqel_Key",    -- Name of file where key is saved
-    Remember = true,            -- Whether to save keys to file
-    AutoLoad = true             -- Whether to auto-validate saved keys on launch
+    FileName = "Arqel_Key",
+    Remember = true,
+    AutoLoad = true
 }
 ```
 
@@ -192,9 +192,9 @@ General behavior settings for the key system.
 
 ```lua
 Arqel.Options = {
-    Keyless = nil,      -- Keyless mode: nil (auto), true (force), false (disable)
-    Blur = true,        -- Background blur effect when UI is open
-    Draggable = true    -- Allow dragging the window by the header
+    Keyless = nil,
+    Blur = true,
+    Draggable = true
 }
 ```
 
@@ -212,24 +212,44 @@ Customizes all UI colors to match your branding.
 
 ```lua
 Arqel.Theme = {
-    Accent = Color3.fromRGB(139, 0, 0),          -- Primary accent color
-    AccentHover = Color3.fromRGB(170, 20, 20),   -- Accent color on hover
-    Background = Color3.fromRGB(15, 15, 15),     -- Main background
-    Header = Color3.fromRGB(20, 20, 20),         -- Header background
-    Input = Color3.fromRGB(25, 25, 25),          -- Input field background
-    Text = Color3.fromRGB(255, 255, 255),        -- Primary text color
-    TextDim = Color3.fromRGB(120, 120, 120),     -- Secondary text color
-    Success = Color3.fromRGB(50, 205, 110),      -- Success state color
-    Error = Color3.fromRGB(245, 70, 90),         -- Error state color
-    Warning = Color3.fromRGB(255, 180, 50),      -- Warning state color
-    StatusIdle = Color3.fromRGB(180, 80, 80),    -- Idle status color
-    Discord = Color3.fromRGB(88, 101, 242),      -- Discord button color
-    DiscordHover = Color3.fromRGB(114, 137, 218),-- Discord hover color
-    Divider = Color3.fromRGB(45, 45, 70)         -- Divider line color
+    Accent = Color3.fromRGB(139, 0, 0),
+    AccentHover = Color3.fromRGB(170, 20, 20),
+    Background = Color3.fromRGB(15, 15, 15),
+    Header = Color3.fromRGB(20, 20, 20),
+    Input = Color3.fromRGB(25, 25, 25),
+    Text = Color3.fromRGB(255, 255, 255),
+    TextDim = Color3.fromRGB(120, 120, 120),
+    Success = Color3.fromRGB(50, 205, 110),
+    Error = Color3.fromRGB(245, 70, 90),
+    Warning = Color3.fromRGB(255, 180, 50),
+    StatusIdle = Color3.fromRGB(180, 80, 80),
+    Discord = Color3.fromRGB(88, 101, 242),
+    DiscordHover = Color3.fromRGB(114, 137, 218),
+    Divider = Color3.fromRGB(45, 45, 70),
+    Pending = Color3.fromRGB(60, 60, 60)
 }
 ```
 
 All colors use Roblox's `Color3.fromRGB()` format with values from 0-255.
+
+### Changelog
+
+Displays version history in a side panel. The changelog button only appears when entries are provided.
+
+```lua
+Arqel.Changelog = {
+    {Version = "v1.2.0", Date = "Jan 20, 2025", Changes = {"Added new feature", "Fixed bug"}},
+    {Version = "v1.1.0", Date = "Jan 15, 2025", Changes = {"Improved UI", "Performance fixes"}},
+    {Version = "v1.0.0", Date = "Jan 10, 2025", Changes = {"Initial release"}}
+}
+```
+
+**Structure:**
+- `Version` - Version string displayed in the panel
+- `Date` - Release date string
+- `Changes` - Table of change descriptions
+
+**Note:** If `Arqel.Changelog` is empty `{}`, the changelog button will be hidden automatically.
 
 ### Callbacks
 
@@ -237,10 +257,10 @@ Functions called during key system lifecycle events.
 
 ```lua
 Arqel.Callbacks = {
-    OnVerify = nil,    -- Function to validate keys
-    OnSuccess = nil,   -- Called after successful validation
-    OnFail = nil,      -- Called when validation fails
-    OnClose = nil      -- Called when UI is closed
+    OnVerify = nil,
+    OnSuccess = nil,
+    OnFail = nil,
+    OnClose = nil
 }
 ```
 
@@ -262,9 +282,9 @@ end
 ```lua
 Arqel.Callbacks.OnVerify = function(key)
     return {
-        valid = false,                  -- Boolean: is the key valid?
-        error = "KEY_EXPIRED",          -- Error code (see error codes section)
-        message = "Your key has expired" -- Human-readable error message
+        valid = false,
+        error = "KEY_EXPIRED",
+        message = "Your key has expired"
     }
 end
 ```
@@ -562,7 +582,6 @@ end
 
 ```lua
 Arqel.Callbacks.OnVerify = function(key)
-    -- Format: KEY_YYYYMMDD
     local keyDate = key:match("KEY_(%d%d%d%d%d%d%d%d)")
     
     if not keyDate then
@@ -616,7 +635,7 @@ Arqel.Callbacks.OnSuccess = function()
     sendWebhook(
         "✅ Successful Login",
         "User: " .. player.Name .. "\nKey: " .. getgenv().SCRIPT_KEY,
-        3066993 -- Green color
+        3066993
     )
 end
 
@@ -625,9 +644,39 @@ Arqel.Callbacks.OnFail = function(errorMsg)
     sendWebhook(
         "❌ Failed Login",
         "User: " .. player.Name .. "\nError: " .. errorMsg,
-        15158332 -- Red color
+        15158332
     )
 end
+```
+
+### With Changelog
+
+```lua
+local Arqel = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cobru1/expert-octo-doodle/refs/heads/main/ArqelUi.luau"))()
+
+Arqel.Appearance.Title = "My Script"
+Arqel.Links.Discord = "https://discord.gg/server"
+
+Arqel.Changelog = {
+    {Version = "v2.0.0", Date = "Jan 20, 2025", Changes = {
+        "Complete UI overhaul",
+        "Added new features",
+        "Performance improvements"
+    }},
+    {Version = "v1.0.0", Date = "Jan 1, 2025", Changes = {
+        "Initial release"
+    }}
+}
+
+Arqel.Callbacks.OnVerify = function(key)
+    return key == "VALID_KEY"
+end
+
+Arqel.Callbacks.OnSuccess = function()
+    loadstring(game:HttpGet("YOUR_SCRIPT_URL"))()
+end
+
+Arqel:Launch()
 ```
 
 ### Custom Theme Example

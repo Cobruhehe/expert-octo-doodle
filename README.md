@@ -2,7 +2,9 @@
 
 A modern key system UI for Roblox executors. Supports custom validation, Junkie SDK integration, persistent key storage, and keyless mode.
 
-![ArqelUi](https://images.haunt.gg/WRr32V6V.png)
+![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/Raft-Game/refs/heads/main/Screenshot_20260301-042539_Roblox.jpg)
+![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/Raft-Game/refs/heads/main/Screenshot_20260301-042522_Roblox.jpg)
+
 
 ## Installation
 
@@ -136,6 +138,33 @@ Arqel.Callbacks.OnVerify = function(key)
 end
 ```
 
+### With Shop Integration
+
+```lua
+local Arqel = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cobruhehe/expert-octo-doodle/refs/heads/main/ArqelUi.luau"))()
+
+Arqel.Appearance.Title = "Premium Script"
+Arqel.Links.GetKey = "https://your-key-link.com"
+Arqel.Links.Discord = "https://discord.gg/server"
+
+-- Shop configuration
+Arqel.Shop.Enabled = true
+Arqel.Shop.Title = "Get Lifetime Key"
+Arqel.Shop.Subtitle = "One-time payment • Instant delivery"
+Arqel.Shop.ButtonText = "Purchase"
+Arqel.Shop.Link = "https://yourshop.com/product/key"
+
+Arqel.Callbacks.OnVerify = function(key)
+    return key == "VALID_KEY"
+end
+
+Arqel.Callbacks.OnSuccess = function()
+    loadstring(game:HttpGet("YOUR_SCRIPT_URL"))()
+end
+
+Arqel:Launch()
+```
+
 ---
 
 ## Configuration Reference
@@ -170,9 +199,11 @@ Arqel.Storage = {
 }
 ```
 
-- `FileName` - Base name for saved key file
-- `Remember` - Save valid keys locally
-- `AutoLoad` - Auto-validate saved keys on launch
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `FileName` | string | `"Arqel_Key"` | Base name for saved key file |
+| `Remember` | boolean | `true` | Save valid keys locally |
+| `AutoLoad` | boolean | `true` | Auto-validate saved keys on launch |
 
 ### Options
 
@@ -185,10 +216,12 @@ Arqel.Options = {
 }
 ```
 
-- `Keyless` - `nil` (auto-detect), `true` (force keyless), `false` (disable)
-- `KeylessUI` - Show keyless UI (`true`) or skip entirely (`false`)
-- `Blur` - Background blur effect
-- `Draggable` - Window dragging
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `Keyless` | boolean/nil | `nil` | `nil` (auto-detect), `true` (force keyless), `false` (disable) |
+| `KeylessUI` | boolean | `false` | Show keyless UI (`true`) or skip entirely (`false`) |
+| `Blur` | boolean | `true` | Background blur effect |
+| `Draggable` | boolean | `true` | Window dragging |
 
 ### Theme
 
@@ -211,6 +244,30 @@ Arqel.Theme = {
     Pending = Color3.fromRGB(60, 60, 60)
 }
 ```
+
+### Shop
+
+```lua
+Arqel.Shop = {
+    Enabled = false,
+    Icon = "",
+    Title = "Get Premium Access",
+    Subtitle = "Instant delivery • 24/7 support",
+    ButtonText = "Buy",
+    Link = ""
+}
+```
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `Enabled` | boolean | `false` | Enable shop section in UI |
+| `Icon` | string | `""` | Custom icon (rbxassetid or URL). Empty uses main logo |
+| `Title` | string | `"Get Premium Access"` | Shop section heading |
+| `Subtitle` | string | `"Instant delivery • 24/7 support"` | Description text below title |
+| `ButtonText` | string | `"Buy"` | Text on purchase button |
+| `Link` | string | `""` | URL copied when buy button clicked |
+
+**Note:** Shop section appears automatically if `Enabled = true` OR `Link` is not empty.
 
 ### Changelog
 
@@ -410,6 +467,24 @@ Arqel.Theme.AccentHover = Color3.fromRGB(159, 95, 226)
 Arqel.Theme.Background = Color3.fromRGB(10, 10, 15)
 ```
 
+### Shop with Custom Icon
+
+```lua
+Arqel.Shop.Enabled = true
+Arqel.Shop.Icon = "rbxassetid://123456789"
+Arqel.Shop.Title = "Premium Upgrade"
+Arqel.Shop.Subtitle = "Unlock all features"
+Arqel.Shop.ButtonText = "Get Now"
+Arqel.Shop.Link = "https://shop.example.com"
+```
+
+### Minimal Shop Setup
+
+```lua
+-- Shop appears with just a link
+Arqel.Shop.Link = "https://yourshop.com/buy"
+```
+
 ---
 
 ## Troubleshooting
@@ -420,3 +495,4 @@ Arqel.Theme.Background = Color3.fromRGB(10, 10, 15)
 | Validation not working | Define `Callbacks.OnVerify` before `Launch()` |
 | UI not appearing | Check `getgenv().ArqelLoaded` isn't already `true` |
 | Junkie failing | Verify Service, Identifier, Provider values |
+| Shop not showing | Set `Shop.Enabled = true` or provide `Shop.Link` |

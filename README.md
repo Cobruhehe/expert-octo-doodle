@@ -17,7 +17,6 @@ A modern key system UI for Roblox executors. Supports custom validation, Junkie 
 </div>
 
 
-## Star History
 
 <a href="https://www.star-history.com/?repos=Cobruhehe%2Fexpert-octo-doodle&type=date&legend=top-left">
  <picture>

@@ -1,4 +1,5 @@
 # ArqelUi
+<div align="center">
 
 
 [![Docs](https://img.shields.io/badge/Documentation-Arqelui.orqan.xyz-0A0A0A?style=for-the-badge&logo=gitbook&logoColor=white)](https://Arqelui.orqan.xyz)
@@ -27,3 +28,5 @@ A modern key system UI for Roblox executors. Supports custom validation, Junkie 
    <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Cobruhehe/expert-octo-doodle&type=date&legend=bottom-right" />
  </picture>
 </a>
+
+</div>

@@ -4,6 +4,8 @@
 
 [![Docs](https://img.shields.io/badge/Documentation-Arqelui.orqan.xyz-0A0A0A?style=for-the-badge&logo=gitbook&logoColor=white)](https://Arqelui.orqan.xyz)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://Orqan.lol/discord)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V51VT397)
+</div>
 
 
 A modern key system UI for Roblox executors. Supports custom validation, Junkie SDK integration, persistent key storage, and keyless mode.
@@ -14,8 +16,7 @@ A modern key system UI for Roblox executors. Supports custom validation, Junkie 
 <div align="center">
 
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V51VT397)
-</div>
+
 
 
 

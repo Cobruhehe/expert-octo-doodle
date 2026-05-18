@@ -12,7 +12,7 @@
 A modern key system UI for Roblox executors. Supports custom validation, Junkie SDK integration, persistent key storage, and keyless mode.
 <div align="center">
 
-[![Arqel Keysystem Ui](https://uibin.orqan.xyz/api/card?id=a70efc5c-f87a-4a19-b63e-41ad86e6b132?v=2)](https://uibin.orqan.xyz/library/a70efc5c-f87a-4a19-b63e-41ad86e6b132)
+[![Arqel Keysystem Ui](https://uibin.orqan.xyz/api/card?id=a70efc5c-f87a-4a19-b63e-41ad86e6b132)](https://uibin.orqan.xyz/library/a70efc5c-f87a-4a19-b63e-41ad86e6b132)
 
 
 

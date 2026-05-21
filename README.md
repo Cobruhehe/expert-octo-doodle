@@ -5,6 +5,8 @@
 [![Docs](https://img.shields.io/badge/Documentation-Arqelui.orqan.xyz-0A0A0A?style=for-the-badge&logo=gitbook&logoColor=white)](https://Arqelui.orqan.xyz)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://Orqan.lol/discord)
 
+[![Cryptocurrency & Bitcoin donation button by NOWPayments](https://nowpayments.io/images/embeds/donation-button-white.svg)](https://nowpayments.io/donation?api_key=a9fd85a6-e9ef-4f57-a2df-93857537e66e)
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V51VT397)
 </div>
 

